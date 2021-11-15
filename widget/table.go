@@ -281,6 +281,12 @@ func (t *Table) findY(row int) (cellY float32, cellHeight float32) {
 	return
 }
 
+func (t *Table) SynchronizeScroll(synchronized *Table) {
+	t.offset = synchronized.offset
+	t.scroll.Offset = synchronized.scroll.Offset
+	t.finishScroll()
+}
+
 func (t *Table) finishScroll() {
 	if t.moveCallback != nil {
 		t.moveCallback()
